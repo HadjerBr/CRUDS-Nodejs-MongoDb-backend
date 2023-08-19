@@ -1,0 +1,97 @@
+<%- include('./partials/head.ejs') %>
+
+    <body>
+        <%- include('./partials/header.ejs') %>
+
+            <section>
+                <!-- <div class="updateContainer">
+                    <div id="header_and_form_container">
+                        <div id="form_header">Update Fis no  </div> -->
+                <form class="responsive-form" id="loginForm" action="/login" method="post">
+                    <h2 id="updateTitle">Login
+                    </h2>
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" required>
+
+
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" required>
+                    <div class="passwordOrUsername-error"></div>
+
+                    <a class="already" href="/signup">you don't have an account?</a>
+                    <div class="udateButtons">
+                        <!-- <button class="cancelUpdate" id="cancelupdatebtn"><a href="/">Cancel</a></button> -->
+                        <button class="loginButton" id="loginButton" type="submit">Login</button>
+
+
+                    </div>
+
+
+
+                </form>
+                <!-- </div>
+
+
+                </div> -->
+
+
+            </section>
+
+
+
+
+
+
+
+
+
+
+
+            <%- include('./partials/footer.ejs') %>
+
+
+                <script>
+                    const form = document.getElementById("loginForm");
+                    const usernameOrPasswordError = document.querySelector(".passwordOrUsername-error")
+
+
+                    form.addEventListener("submit", async (e) => {
+                        e.preventDefault();
+                        usernameOrPasswordError.textContent = "";
+
+
+
+                        const password = form.password.value;
+                        const username = form.username.value;
+
+                        try {
+                            const res = await fetch("/login", {
+                                method: "POST",
+                                body: JSON.stringify({ username, password }),
+                                headers: { "content-type": "application/json" }
+                            })
+                            const data = await res.json();
+
+                            if (data.errors) {
+
+                                usernameOrPasswordError.textContent = data.errors.username;
+                            }
+                            if (data.user) {
+                                location.assign("/");
+
+                            }
+                        }
+                        catch (err) {
+                            console.log(err);
+                        }
+
+
+                    })
+
+                </script>
+
+
+
+    </body>
+
+    </html>

@@ -1,0 +1,21 @@
+<header>
+    <nav>
+        <div class="logo"><a href="/">fislerim</a></div>
+        <ul>
+            <li><a href="/">Eski Fisler</a></li>
+            <li><a href="/add">Fis Ekle</a></li>
+            <% if (user) { %>
+                <li><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>logout</a></li>
+                <li><a href="">Welcome <%= user.username %></a>
+                </li>
+
+
+                <% } else { %>
+                    <li><a href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i>
+                            login</a></li>
+                    <li><a href="/signup"><i class="fa fa-user-plus" aria-hidden="true"></i>signup</a></li>
+                    <% } %>
+        </ul>
+    </nav>
+
+</header>

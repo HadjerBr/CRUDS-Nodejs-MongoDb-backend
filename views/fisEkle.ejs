@@ -1,0 +1,292 @@
+<%- include('./partials/head.ejs') %>
+
+
+
+
+    <body>
+        <%- include('./partials/header.ejs') %>
+
+
+            <section>
+                <form action="/" method="post">
+
+                    <div class="button_and_title_container">
+
+                        <h3 class="yeni-title">Yeni Fisler Ekleme Sayfasi</h3>
+                        <div class="buttons">
+                            <input id="sbmt" class="button" type="submit" name="sbmt" value="Submit" />
+                            <input id="reset" class="button" type="reset" value="Reset">
+                        </div>
+
+
+                    </div>
+                    <% if (message) { %>
+                        <div id="danger-alert" class="alert alert-danger" role="alert">
+                            <strong>Error!</strong>
+                            <%= message %>
+                        </div>
+
+                        <script type="text/javascript">
+                            document.addEventListener("DOMContentLoaded", function () {
+                                var dangerAlert = document.getElementById("danger-alert");
+                                if (dangerAlert) {
+                                    setTimeout(function () {
+                                        dangerAlert.remove();
+                                    }, 3000); 
+                                }
+                            });
+                        </script>
+                        <% } %>
+
+                            <div class="addTables">
+
+
+                                <table id="table1">
+                                    <thead>
+                                        <tr class="headRow">
+                                            <th rowspan="2">Sıra</th>
+                                            <th colspan="5">Vergi İadesine Esas Belgenin</th>
+
+                                        </tr>
+                                        <tr class="headRow">
+                                            <th>Tarihi</th>
+                                            <th>No</th>
+                                            <th>Kimden Alındığı</th>
+                                            <th>Türü</th>
+                                            <th>Tutarı</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+
+
+                                        <% for( let i=0; i < 20; i++ ) { %>
+                                            <tr>
+                                                <td class="sira">
+                                                    <%= i+1 %>
+                                                </td>
+                                                <td class="tarih">
+                                                    <input type="date" name="tarih">
+                                                </td>
+                                                <td class="no">
+                                                    <input type="number" name="no">
+                                                </td>
+                                                <td class="kimden">
+                                                    <input type="text" name="kimden">
+                                                </td>
+                                                <td class="tur">
+                                                    <select name="tur" id="tur1">
+                                                        <option></option>
+                                                        <option value="egitim">egitim</option>
+                                                        <option value="saglik">saglik</option>
+                                                        <option value="gida">gida</option>
+                                                        <option value="giyim">giyim</option>
+                                                        <option value="kira">kira</option>
+                                                    </select>
+                                                </td>
+                                                <td class="tutar">
+                                                    <input type="number" name="tutar">
+                                                </td>
+
+                                            </tr>
+                                            <% } %>
+                                                <tr>
+                                                    <td class="toplamL" colspan="5">Toplam</td>
+                                                    <td class="toplam1" id="toplam1">
+                                                        <input type="number" name="toplam1">
+                                                    </td>
+                                                </tr>
+                                    </tbody>
+
+
+
+                                </table>
+
+
+
+                                <table id="table2">
+                                    <thead>
+                                        <tr class="headRow">
+                                            <th class="radius" rowspan="2">Sıra</th>
+                                            <th colspan="5">Vergi İadesine Esas Belgenin</th>
+
+                                        </tr>
+                                        <tr>
+                                            <th>Tarihi</th>
+                                            <th>No</th>
+                                            <th>Kimden Alındığı</th>
+                                            <th>Türü</th>
+                                            <th class="radius">Tutarı</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+
+
+                                        <% for( let i=20; i < 40; i++ ) { %>
+                                            <tr>
+                                                <td class="sira">
+                                                    <%= i+1 %>
+                                                </td>
+                                                <td class="tarih">
+                                                    <input type="date" name="tarih">
+                                                </td>
+                                                <td class="no">
+                                                    <input type="number" name="no">
+                                                </td>
+                                                <td class="kimden">
+                                                    <input type="text" name="kimden">
+                                                </td>
+                                                <td class="tur">
+                                                    <select name="tur" id="tur2">
+                                                        <option></option>
+                                                        <option value="egitim">egitim</option>
+                                                        <option value="saglik">saglik</option>
+                                                        <option value="gida">gida</option>
+                                                        <option value="giyim">giyim</option>
+                                                        <option value="kira">kira</option>
+                                                    </select>
+                                                </td>
+                                                <td class="tutar">
+                                                    <input type="number" name="tutar">
+                                                </td>
+
+                                            </tr>
+                                            <% } %>
+                                                <tr>
+                                                    <td class="toplamL" colspan="5">Toplam</td>
+                                                    <td class="toplam2" id="toplam2">
+                                                        <input type="number" name="toplam2">
+                                                    </td>
+                                                </tr>
+                                    </tbody>
+
+
+
+                                </table>
+
+
+
+                            </div>
+
+                            <!-- <input id="addRow" class="button" type="reset" value="Satır Ekle"> -->
+
+                            <div class="resultTable">
+                                <table id="table3">
+                                    <thead>
+                                        <tr class="headRow">
+                                            <th class="empty">Toplamlar</th>
+                                            <th>Adet</th>
+                                            <th>Tutar</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="genel">Genel Toplam</td>
+                                            <td class="genel1" id="toplamAdet">
+                                                <input type="number" name="adet">
+                                            </td>
+                                            <td class="genel1" id="toplamtutar">
+                                                <input type="number" name="toplamtutar">
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class="genel">Eğitim</td>
+                                            <td class="genel1" id="toplamE">
+                                                <input type="number" name="toplamE">
+                                            </td>
+                                            <td id="etutar" class="genel1">
+                                                <input type="number" name="etutar">
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td class="genel">Sağlık</td>
+
+                                            <td class="genel1" id="toplamS">
+                                                <input type="number" name="toplamS">
+                                            </td>
+                                            <td id="stutar" class="genel1">
+                                                <input type="number" name="stutar">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="genel">Gıda</td>
+
+                                            <td class="genel1" id="toplamGid">
+                                                <input type="number" name="toplamGid">
+                                            </td>
+                                            <td id="gidtutar" class="genel1">
+                                                <input type="number" name="gidtutar">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="genel">Giyim</td>
+
+                                            <td class="genel1" id="toplamGiy">
+                                                <input type="number" name="toplamGiy">
+                                            </td>
+                                            <td id="giytutar" class="genel1">
+                                                <input type="number" name="giytutar">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="genel">Kira</td>
+                                            <td class="genel1" id="toplamK">
+                                                <input type="number" name="toplamK">
+                                            </td>
+                                            <td id="ktutar" class="genel1">
+                                                <input type="number" name="ktutar">
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+
+
+                            </div>
+                </form>
+            </section>
+
+
+
+
+
+
+
+
+
+
+
+            <%- include('./partials/footer.ejs') %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <script src="/script.js"></script>
+
+
+    </body>
+
+    </html>

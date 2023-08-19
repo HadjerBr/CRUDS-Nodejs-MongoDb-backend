@@ -1,0 +1,188 @@
+<%- include('./partials/head.ejs') %>
+
+    <body>
+        <%- include('./partials/header.ejs') %>
+
+
+
+            <section class="eski-fisler-sayfa">
+
+                <h3>Eski Fisler Tablosu</h3>
+
+
+                <% if (message) { %>
+                    <div id="success-alert" class="alert alert-success" role="alert">
+                        <strong>Success!</strong>
+                        <%= message %>
+                    </div>
+
+                    <script type="text/javascript">
+                        document.addEventListener("DOMContentLoaded", function () {
+                            var successAlert = document.getElementById("success-alert");
+                            if (successAlert) {
+                                setTimeout(function () {
+                                    successAlert.remove();
+                                }, 3000); 
+                            }
+                        });
+                    </script>
+                    <% } %>
+
+                        <form action="/" method="post" class="searchCon" id="searchConIndex">
+
+                            <select name="searchBy" id="searchBy">
+                                <option>Search by:</option>
+                                <option value="tarih">tarih</option>
+                                <option value="no">no</option>
+                                <option value="kimden">kimden</option>
+                                <option value="tur">tur</option>
+                                <option value="tutar">tutar</option>
+                            </select>
+                            <button id="sbmtSrch" type="submit">Go</button>
+                            <!-- <i class="fa fa-search" aria-hidden="true"></i> -->
+
+                        </form>
+
+
+
+                        
+
+                        <table class="fislerTablosu1">
+                            <thead>
+                                <tr>
+                                    <th>Tarih</th>
+                                    <th>No</th>
+                                    <th>Kimden</th>
+                                    <th>Tur</th>
+                                    <th>Tutar</th>
+                                    <th>Update / Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% fisler.forEach(fis=> { %>
+                                    <tr>
+                                        <td>
+                                            <%= fis.tarih.toDateString() %>
+                                        </td>
+                                        <td>
+                                            <%= fis.no %>
+                                        </td>
+                                        <td>
+                                            <%= fis.kimden %>
+                                        </td>
+                                        <td>
+                                            <%= fis.tur %>
+                                        </td>
+                                        <td>
+                                            <%= fis.tutar %>
+                                        </td>
+                                        <td>
+
+
+
+                                            <button class="updatebutton" id="updatebtn" data-doc="<%= fis._id %>">
+                                                <a href="/update/<%=fis._id %>"><i
+                                                        class="fa fa-pencil-square-o"></i></a>
+
+                                            </button>
+                                            <button class="deletebutton" id="deletebtn" data-doc="<%= fis._id %>">
+
+                                                <i class="fa fa-trash-o"></i>
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                        <!-- <table id="table3">
+                    <thead>
+                        <tr class="headRow">
+                            <th class="empty">Toplamlar</th>
+                            <th>Adet</th>
+                            <th>Tutar</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="genel">Genel Toplam</td>
+                            <td class="genel1" id="toplamAdet">
+
+                            </td>
+                            <td class="genel1" id="toplamtutar">
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="genel">Eğitim</td>
+                            <td class="genel1" id="toplamE">
+
+                            </td>
+                            <td id="etutar" class="genel1">
+
+                            </td>
+
+
+                        </tr>
+                        <tr>
+                            <td class="genel">Sağlık</td>
+
+                            <td class="genel1" id="toplamS">
+
+                            </td>
+                            <td id="stutar" class="genel1">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="genel">Gıda</td>
+
+                            <td class="genel1" id="toplamGid">
+
+                            </td>
+                            <td id="gidtutar" class="genel1">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="genel">Giyim</td>
+
+                            <td class="genel1" id="toplamGiy">
+
+                            </td>
+                            <td id="giytutar" class="genel1">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="genel">Kira</td>
+                            <td class="genel1" id="toplamK">
+
+                            </td>
+                            <td id="ktutar" class="genel1">
+
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                </div> -->
+
+
+                        </div>
+
+            </section>
+
+
+
+
+
+            <%- include('./partials/footer.ejs') %>
+
+                <script src="eskiFisler.js"></script>
+
+    </body>
+
+    </html>

@@ -1,0 +1,65 @@
+<%- include('./partials/head.ejs') %>
+
+    <body>
+        <%- include('./partials/header.ejs') %>
+
+            <section id="update_section">
+                <!-- <div class="updateContainer">
+                    <div id="header_and_form_container">
+                        <div id="form_header">Update Fis no <%= fis.no %> </div> -->
+                <form class="responsive-form" id="updateForm" action="/update/<%=fis._id %>" method="post">
+                    <h2 id="updateTitle">Update Fis no <%= fis.no %>
+                    </h2>
+                    <label for="tarih">Tarih</label>
+                    <input type="date" name="tarih" id="tarih" value=<%=fis.tarih.toDateString() %> required>
+                    <label for="no">No</label>
+                    <input type="number" name="no" id="no" value=<%=fis.no %> required>
+                    <label for="kimden">Kimden</label>
+                    <input type="text" name="kimden" id="kimden" value=<%=fis.kimden %> required>
+                    <label for="tur">Tur</label>
+                    <select name="tur" id="tur">
+                        <option>
+                            <%= fis.tur %>
+                        </option>
+                        <option value="egitim">egitim</option>
+                        <option value="saglik">saglik</option>
+                        <option value="gida">gida</option>
+                        <option value="giyim">giyim</option>
+                        <option value="kira">kira</option>
+                    </select>
+                    <label for="tutar">Tutar</label>
+                    <input type="number" name="tutar" id="tutar" value=<%=fis.tutar %> required>
+                    <div class="udateButtons">
+                        <button class="cancelUpdate" id="cancelupdatebtn"><a href="/">Cancel</a></button>
+                        <button class="confirmUpdate" id="confirmupdatebtn" type="submit">Update</button>
+
+
+                    </div>
+
+
+                </form>
+                <!-- </div>
+
+
+                </div> -->
+
+
+            </section>
+
+
+
+
+
+
+
+
+
+
+
+            <%- include('./partials/footer.ejs') %>
+
+                <script src="/update.js"></script>
+
+    </body>
+
+    </html>
