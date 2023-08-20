@@ -34,7 +34,7 @@ app.use(authRouter);
 app.use(searchRouter);
 app.use(express.json()); // attach the json response as a js OBJECT to req.body
 app.use(cookieParser());
-app.get("*", checkUser);
+// app.get("*", checkUser);
 
 
 app.use(session({
