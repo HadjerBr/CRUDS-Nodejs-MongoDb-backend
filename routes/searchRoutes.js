@@ -8,7 +8,6 @@ const cookieParser = require("cookie-parser");
 
 router.use(cookieParser());
 
-
 // router.post("*", checkUser);
 
 // router.get("/searchBytutar", (req, res) => {
@@ -71,7 +70,7 @@ router.post("/search", (req, res) => {
       
       const parsedTutar = parseFloat(searchValue);
       if (!isNaN(parsedTutar)) {
-        searchConditions.push({ tutar: parsedTutar });
+        searchConditions.push({ tutar: parsedTutar }, { no: parsedTutar });
       }
   
       
