@@ -23,7 +23,11 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://reciepts-frontend.onrender.com',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  }));
 app.use(express.static("public"));
 app.use(express.urlencoded({extended: true})); // to attach to req.body
 app.use(authRouter);

@@ -8,7 +8,11 @@ const cors = require('cors');
 
 router.use(express.json()); 
 router.use(cookieParser());
-router.use(cors());
+router.use(cors({
+    origin: 'https://reciepts-frontend.onrender.com',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  }));
 
 router.get("*", checkUser);
 router.get("/signup", authController.signup_get);

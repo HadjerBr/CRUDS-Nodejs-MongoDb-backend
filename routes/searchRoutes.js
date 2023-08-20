@@ -7,6 +7,11 @@ const cookieParser = require("cookie-parser");
 
 
 router.use(cookieParser());
+router.use(cors({
+  origin: 'https://reciepts-frontend.onrender.com',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}));
 
 // router.post("*", checkUser);
 
